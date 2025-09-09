@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3360/job_hunter
+    username: root
+    password: 1234567
+  jpa:
+    hibernate:
+      ddl-auto: update
