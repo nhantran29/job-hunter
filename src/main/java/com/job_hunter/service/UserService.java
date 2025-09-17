@@ -1,6 +1,7 @@
 package com.job_hunter.service;
 
 import com.job_hunter.domain.User;
+import com.job_hunter.dto.UpdateUserRequest;
 import com.job_hunter.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,11 +28,21 @@ public class UserService {
     }
 
     public User createUser() {
-        User user = new User();
-        user.setFullName("Nhan");
+        User user = User.builder().fullName("Nhan").build();
         userRepository.save(user);
         return user;
     }
 
-    ;
+    public User updateUser(long id, UpdateUserRequest request) {
+        Optional<User> optionalUser = get(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+            user.setFullName(request.getFullName());
+            user.setPassword(request.getPassword());
+            userRepository.save(user);
+            return user;
+        }
+        return null;
+    }
+
 }

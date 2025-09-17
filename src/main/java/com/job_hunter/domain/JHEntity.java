@@ -3,13 +3,16 @@ package com.job_hunter.domain;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.Date;
 
 //@Entity
 //@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) // hoặc TABLE_PER_CLASS
-@Builder
+@SuperBuilder
 @MappedSuperclass
+@NoArgsConstructor
 @Data
 public class JHEntity {
 

@@ -1,14 +1,12 @@
 package com.job_hunter.controller;
 
 import com.job_hunter.domain.User;
+import com.job_hunter.dto.UpdateUserRequest;
 import com.job_hunter.repository.UserRepository;
 import com.job_hunter.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,5 +31,10 @@ public class UserController extends RestfulController {
     @PostMapping("/users")
     public ResponseEntity<User> createUser() {
         return ResponseEntity.ok().body(userService.createUser());
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UpdateUserRequest request) {
+        return ResponseEntity.ok().body(userService.updateUser(id, request));
     }
 }
