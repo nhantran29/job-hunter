@@ -1,13 +1,15 @@
 package com.job_hunter.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "jh_users")
@@ -22,7 +24,19 @@ public class User extends JHEntity {
     @JsonProperty("full_name")
     private String fullName;
 
-    @Column(name = "pass_word")
+    @Column(name = "user_name")
+    @JsonProperty("user_name")
+    private String userName;
+
+    @Column(name = "password")
     private String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "jh_user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles= new HashSet<>();
 
 }

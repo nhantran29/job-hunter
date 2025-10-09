@@ -3,7 +3,7 @@ package com.job_hunter.controller;
 import com.job_hunter.domain.User;
 import com.job_hunter.dto.UpdateUserRequest;
 import com.job_hunter.repository.UserRepository;
-import com.job_hunter.service.UserService;
+import com.job_hunter.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
