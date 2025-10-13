@@ -1,4 +1,4 @@
-package com.job_hunter.dto;
+package com.job_hunter.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

@@ -1,7 +1,9 @@
 package com.job_hunter.controller;
 
 import com.job_hunter.domain.User;
-import com.job_hunter.dto.UpdateUserRequest;
+import com.job_hunter.dto.request.RegisterUserRequest;
+import com.job_hunter.dto.request.UpdateUserRequest;
+import com.job_hunter.dto.response.UserResponse;
 import com.job_hunter.repository.UserRepository;
 import com.job_hunter.service.impl.UserService;
 import lombok.RequiredArgsConstructor;
@@ -36,5 +38,11 @@ public class UserController extends RestfulController {
     @PutMapping("/users/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody UpdateUserRequest request) {
         return ResponseEntity.ok().body(userService.updateUser(id, request));
+    }
+
+    @PostMapping("/registers")
+    public ResponseEntity<UserResponse> register(@RequestBody RegisterUserRequest request) throws Exception {
+        User user = userService.registerUser(request);
+        return ResponseEntity.ok().body(new UserResponse(user));
     }
 }

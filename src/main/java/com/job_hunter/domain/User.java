@@ -28,6 +28,10 @@ public class User extends JHEntity {
     @JsonProperty("user_name")
     private String userName;
 
+    @Column(name = "email")
+    @JsonProperty("email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
